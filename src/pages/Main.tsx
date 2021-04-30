@@ -13,14 +13,22 @@ import {
     ModalFooter,
     ModalBody,
     ModalCloseButton,
-    useDisclosure
+    useDisclosure,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverHeader,
+    PopoverBody,
+    PopoverArrow,
+    PopoverCloseButton,
+    Link
 } from '@chakra-ui/react';
 import {
     
   } from "@chakra-ui/react"
-import Boy from '../asserts/Boy.png';
-import Tree from '../asserts/xmax-tree.png';
-import problem from '../asserts/problem';
+import Boy from '../assets/Boy.png';
+import Tree from '../assets/xmax-tree.png';
+import problem from '../knapsack/problem';
 import FormInput from '../components/FormInput';
 
 import knapsack from '../knapsack';
@@ -186,7 +194,7 @@ const Main: React.FC = () => {
               />
           </Box>
           {validateFields() ? (
-            <Button pos="absolute" bottom="2vh" left="30vw" w="10vw" background="#eb6a7f" onClick={() => submit()}>
+            <Button pos="absolute" bottom="2vh" left="30vw" w="10vw" background="#eb6a7f" _hover={{background: "#c05567"}} onClick={() => submit()}>
                 Calcular
             </Button>
           ):null}
@@ -205,15 +213,32 @@ const Main: React.FC = () => {
                 display="flex"
                 flexDir="column"
             >
-                <Text
-                    fontFamily="Roboto"
-                    fontSize="2rem"
-                    textAlign="center"
-                    fontWeight="bold"
-                    marginBottom="20px"
-                >
-                    Árvore de Natal
-                </Text>
+                <Box w="100%" d="flex" alignItems="center" justifyContent="center">
+                    <Text
+                        fontFamily="Roboto"
+                        fontSize="2rem"
+                        fontWeight="bold"
+                        marginBottom="20px"
+                    >
+                        Árvore de Natal
+                    </Text>
+                    <Popover>
+                        <PopoverTrigger>
+                            <Button background="#74eb67" margin="0 0 0 50px" _hover={{background: "#62c757"}}>?</Button>
+                        </PopoverTrigger>
+                        <PopoverContent>
+                            <PopoverArrow />
+                            <PopoverCloseButton/>
+                            <PopoverHeader>Como funciona?</PopoverHeader>
+                            <PopoverBody>
+                                Preencha todos os campos com valores referente ao número de enfeites e o peso dos pacotes,
+                                por padrão cada galho tem 5 opções de enfeites obrigatórias.
+                                <br/>
+                                O problema original pode ser acessado através do link: <Link href="https://www.urionlinejudge.com.br/judge/pt/problems/view/2026" target="_blank">URI 2026</Link>
+                            </PopoverBody>
+                        </PopoverContent>
+                    </Popover>
+                </Box>
                 <Text
                     fontFamily="Roboto"
                     fontSize="0.9vw"

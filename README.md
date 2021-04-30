@@ -1,45 +1,60 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# Programação Dinâmica - Árvore de Natal
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 10<br>
+**Conteúdo da Disciplina**: Programação Dinâmica<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 15/0120371  |  Bruno Oliveira Dantas |
+| 17/0031438 |  Dâmaso Júnio Pereira Brasileo |
 
 ## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+
+O projeto Árvore de Natal é a solução do exercício 2026 do Uri Online Judge! 
+É um verdadeiro desafio, sobre o pequeno Rolien tenta calcular o máximo de enfeites possíveis para colocar na sua árvore de natal.
+
+É possível acessar o exercício através do link: [URI 2026](https://www.urionlinejudge.com.br/judge/pt/problems/view/2026)
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+![](src/assets/print1.png)
+
+![](src/assets/print2.png)
+
+![](src/assets/print3.png)
+
+## Vídeo
+
 
 ## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+**Linguagem**: TypeScript<br>
+**Framework**: ReactJS + Chakra UI<br>
+
+Para instalação do projeto, é necessário executar os seguintes comandos:
+```
+git clone https://github.com/projeto-de-algoritmos/PD_ArvoreDeNatal
+
+cd PD_ArvoreDeNatal 
+
+yarn install
+```
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+
+Para execução do projeto é necessário, após a instalação:
+```
+cd Greed_DoraAventureira
+
+yarn start
+```
 
 ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+O comando `yarn` pode ser trocado por `npm`:
+```
+npm install
 
+npm start
+```
 
-
-
+É necessário ter o `NPM` ou `YARN` instalado.
