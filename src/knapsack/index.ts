@@ -1,4 +1,9 @@
-export default function knapsack(items: any, capacity: number){
+interface branchParams {
+  value: number,
+  weight: number
+};
+
+export default function knapsack(items: Array<branchParams>, capacity: number){
     var memo:any = [];
   
     for (var i = 0; i < items.length; i++) {

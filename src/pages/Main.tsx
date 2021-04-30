@@ -6,6 +6,14 @@ import {
     NumberInput,
     NumberInputField,
     Button,
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+    useDisclosure
 } from '@chakra-ui/react';
 import {
     
@@ -15,12 +23,21 @@ import Tree from '../asserts/xmax-tree.png';
 import problem from '../asserts/problem';
 import FormInput from '../components/FormInput';
 
+import knapsack from '../knapsack';
+
 interface branchParams {
     value: number,
     weight: number
 };
 
+interface branchResult {
+    maxValue: number,
+    subset: Array<branchParams>
+}
+
 const Main: React.FC = () => {
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const [branchCapacity, setBranchCapacity] = useState<number>(0);
     const [branch2Capacity, setBranch2Capacity] = useState<number>(0);
@@ -58,6 +75,11 @@ const Main: React.FC = () => {
     const [branch14Weight, setBranch14Weight] = useState<number>(0);
     const [branch15Weight, setBranch15Weight] = useState<number>(0);
 
+    const [branch1Result, setBranch1Result] = useState<branchResult>(Object);
+    const [branch2Result, setBranch2Result] = useState<branchResult>(Object);
+    const [branch3Result, setBranch3Result] = useState<branchResult>(Object);
+
+
     const submit = () => {
         let branch1Array: Array<branchParams> = [];
         let branch2Array: Array<branchParams> = [];
@@ -80,6 +102,71 @@ const Main: React.FC = () => {
         branch3Array.push({value: branch13Value, weight: branch13Weight});
         branch3Array.push({value: branch14Value, weight: branch14Weight});
         branch3Array.push({value: branch15Value, weight: branch15Weight});
+
+        const result1: branchResult = knapsack(branch1Array, branchCapacity);
+        const result2: branchResult = knapsack(branch2Array, branch2Capacity);
+        const result3: branchResult = knapsack(branch3Array, branch3Capacity);
+        
+        setBranch1Result(result1);
+        setBranch2Result(result2);
+        setBranch3Result(result3);
+
+        onOpen();
+    }
+
+    const clearFields = () => {
+        setBranchCapacity(0);
+        setBranch2Capacity(0);
+        setBranch3Capacity(0);
+
+        setBranch1Value(0);
+        setBranch2Value(0);
+        setBranch3Value(0);
+        setBranch4Value(0);
+        setBranch5Value(0);
+        setBranch6Value(0);
+        setBranch7Value(0);
+        setBranch8Value(0);
+        setBranch9Value(0);
+        setBranch10Value(0);
+        setBranch11Value(0);
+        setBranch12Value(0);
+        setBranch13Value(0);
+        setBranch14Value(0);
+        setBranch15Value(0);
+
+        setBranch1Weight(0);
+        setBranch2Weight(0);
+        setBranch3Weight(0);
+        setBranch4Weight(0);
+        setBranch5Weight(0);
+        setBranch6Weight(0);
+        setBranch7Weight(0);
+        setBranch8Weight(0);
+        setBranch9Weight(0);
+        setBranch10Weight(0);
+        setBranch11Weight(0);
+        setBranch12Weight(0);
+        setBranch13Weight(0);
+        setBranch14Weight(0);
+        setBranch15Weight(0);
+
+        onClose();
+    }
+
+    const validateFields = () => {
+        if(branch1Value && branch2Value && branch3Value && branch4Value &&
+           branch5Value && branch6Value && branch7Value && branch8Value &&
+           branch9Value && branch10Value && branch11Value && branch12Value &&
+           branch13Value && branch14Value && branch15Value && branch1Weight &&
+           branch2Weight && branch3Weight && branch4Weight && branch5Weight &&
+           branch6Weight && branch7Weight && branch8Weight && branch9Weight &&
+           branch10Weight && branch11Weight && branch12Weight && branch13Weight &&
+           branch14Weight && branch15Weight){
+               return true;
+           }
+           return false;
+
     }
 
   return (
@@ -98,9 +185,11 @@ const Main: React.FC = () => {
                 left="20vw"
               />
           </Box>
-          <Button pos="absolute" bottom="2vh" left="30vw" w="10vw" background="#eb6a7f" onClick={() => submit()}>
-              Calcular
-          </Button>
+          {validateFields() ? (
+            <Button pos="absolute" bottom="2vh" left="30vw" w="10vw" background="#eb6a7f" onClick={() => submit()}>
+                Calcular
+            </Button>
+          ):null}
           <Box
             w="100%"
             h="100vh"
@@ -346,6 +435,26 @@ const Main: React.FC = () => {
           </Box>        
       </Box>
 
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay/>
+            <ModalContent>
+                <ModalHeader>Resultado Final</ModalHeader>
+                <ModalCloseButton/>
+                <ModalBody>
+                    <Text fontFamily="Roboto" fontWeight="bold" fontSize="1.2rem">Galho 1:</Text>
+                    <Text marginBottom="20px">Número total de enfeites: {branch1Result.maxValue}</Text>
+                    <Text fontFamily="Roboto" fontWeight="bold" fontSize="1.2rem">Galho 2:</Text>
+                    <Text marginBottom="20px">Número total de enfeites: {branch2Result.maxValue}</Text>
+                    <Text fontFamily="Roboto" fontWeight="bold" fontSize="1.2rem">Galho 3:</Text>
+                    <Text marginBottom="20px">Número total de enfeites: {branch3Result.maxValue}</Text>
+                </ModalBody>
+                <ModalFooter>
+                    <Button colorScheme="red" onClick={() => clearFields()}>
+                        Limpar campos
+                    </Button>
+                </ModalFooter>
+            </ModalContent>
+        </Modal>
       </>
   );
 }
