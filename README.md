@@ -26,6 +26,7 @@ O projeto Árvore de Natal é a solução do exercício 2026 do Uri Online Judge
 
 ## Vídeo
 
+Faça o Download do vídeo neste link: https://github.com/projeto-de-algoritmos/PD_ArvoreDeNatal/blob/master/Video_Explicativo.mp4
 
 ## Instalação 
 **Linguagem**: TypeScript<br>
